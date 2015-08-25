@@ -35,7 +35,6 @@ var conf = new webpackConf({
             .iNeedReact()
             .iNeedBootstrap()
             .iNeedSCSS()
-            .iNeedInlineSVGs()
             .getConfig();
 
 module.exports = conf;
