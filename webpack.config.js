@@ -27,7 +27,6 @@ var conf = new webpackConf({
             .iNeedHotDevServer()
             .iNeedBootstrap()
             .iNeedSCSS()
-            .iNeedInlineSVGs()
             .getConfig();
 
 module.exports = conf;
