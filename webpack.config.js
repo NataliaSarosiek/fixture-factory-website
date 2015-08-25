@@ -9,17 +9,8 @@ plugins.push(new HtmlWebpackPlugin({
   template: './client/index.html'
 }));
 
-var appEntry;
-
-if (process.env.NODE_ENV === 'production') {
-  appEntry = './client';
-} else {
-  appEntry = ['webpack/hot/dev-server', './client'];
-}
-
-
 var conf = new webpackConf({
-                entry: appEntry,
+                entry: './client',
                 output: {
                     path: path.join(__dirname, '/dist'),
                     filename: 'index.js'
@@ -33,6 +24,7 @@ var conf = new webpackConf({
                 plugins: plugins
             })
             .iNeedReact()
+            .iNeedHotDevServer()
             .iNeedBootstrap()
             .iNeedSCSS()
             .iNeedInlineSVGs()
