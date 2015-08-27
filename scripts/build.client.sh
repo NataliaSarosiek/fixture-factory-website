@@ -5,7 +5,7 @@ export NODE_ENV=production
 ./node_modules/.bin/webpack \
   --colors \
   --verbose \
-  --devtool eval \
+  --devtool inline-source-map \
   --progress \
   --display-chunks \
   --content-base dist \
