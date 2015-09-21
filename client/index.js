@@ -1,7 +1,17 @@
 import React from 'react';
 import Wrapper from './components/wrapper.jsx';
+import FixtureFactory from "fixture-factory";
 
-console.log(Wrapper);
+window.React = React;
+window.F = FixtureFactory;
+
+window.bla = function(){
+
+  console.log(this);
+  console.log("bla");
+
+};
+
 
 React.render(
   <Wrapper />,
