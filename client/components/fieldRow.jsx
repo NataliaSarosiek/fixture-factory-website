@@ -8,9 +8,11 @@ export default class FieldRow extends React.Component {
 
   render(){
 
+    var values = this.props.children.toString().split('.');
+
     return(
       <div className="field_row">
-        {this.props.label} : <input type='text' defaultValue={this.props.children} />
+        {this.props.label} : {values[0]} {values.length > 1 ? <span> : {values[1]}  </span> : null }
       </div>
     );
   }
