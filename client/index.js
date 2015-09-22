@@ -5,13 +5,6 @@ import FixtureFactory from "fixture-factory";
 window.React = React;
 window.F = FixtureFactory;
 
-window.bla = function(){
-
-  console.log(this);
-  console.log("bla");
-
-};
-
 
 React.render(
   <Wrapper />,

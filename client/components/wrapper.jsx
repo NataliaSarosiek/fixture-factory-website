@@ -8,11 +8,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const DUMMY_JSON = {
-  pole:1,
+  pole: 1,
   pole2: 2,
   obj: {
-    pole3 : 'cos'
-  }
+    pole3 : {
+        pole4 : 'cos',
+        pole7: 'random.email'
+    },
+    pole6 : 6,
+  },
+  pole5: 5,
 };
 
 export default class Wrapper extends React.Component {
