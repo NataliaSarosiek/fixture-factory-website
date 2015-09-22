@@ -15,9 +15,9 @@ export default class ObjectRow extends React.Component {
     return _.map(keys, function(key){
 
       if ( _.isObject(obj[key]) ) {
-        return <ObjectRow label={key} content={obj[key]}></ObjectRow>
+        return <ObjectRow label={key} content={obj[key]} key={key}></ObjectRow>
       } else {
-        return <FieldRow label={key}>{obj[key]} </FieldRow>
+        return <FieldRow label={key} key={key}>{obj[key]} </FieldRow>
       }
 
     });
