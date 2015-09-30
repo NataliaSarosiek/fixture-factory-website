@@ -5,7 +5,7 @@ export $( cat .env|xargs)
   --debug \
   --colors \
   --verbose \
-  --devtool inline-source-map \
+  --devtool eval \
   --display-chunks \
   --progress \
   --content-base build \

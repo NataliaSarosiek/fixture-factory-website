@@ -6,13 +6,32 @@ export default class JsonBuilder extends React.Component {
 
 
   static defaultProps = {
-    json: {}
+    blueprint: {}
+  }
+
+  componentDidMount(){
+    this.setState({blueprint: this.props.blueprint})
+  }
+
+  onContentUpdate = (label, newContent) => {
+    this.setState({blueprint: newContent})
+  }
+
+  state = {
+    blueprint: {}
   }
 
   render(){
     return(
-      <div className="rows">
-       <ObjectRow content={this.props.json}></ObjectRow>
+      <div>
+        <div className="rows">
+         <ObjectRow
+          content={this.state.blueprint}
+          updateContent={this.onContentUpdate}/>
+        </div>
+        <pre>
+          {JSON.stringify(this.state.blueprint, null, '\t')}
+        </pre>
       </div>
     );
   }

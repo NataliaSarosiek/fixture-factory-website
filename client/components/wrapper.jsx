@@ -24,7 +24,7 @@ export default class Wrapper extends React.Component {
   render(){
     return(
       <div>
-        <JsonBuilder json={DUMMY_JSON}/>
+        <JsonBuilder blueprint={DUMMY_JSON}/>
       </div>
     );
   }
