@@ -9,6 +9,11 @@ const styles = {
   wrapper: {
     marginLeft: 20
   },
+
+  addButton: {
+    marginLeft: 20
+  },
+
   input: {
     border: 0,
     ':focus': {
@@ -24,11 +29,13 @@ export default class ObjectRow extends React.Component {
   static propTypes = {
     label: React.PropTypes.string,
     content: React.PropTypes.object,
+    root: React.PropTypes.bool,
   }
 
   static defaultProps = {
     label: '',
     updateContent: _.noop,
+    root: false,
   }
 
   componentDidMount(){
@@ -76,14 +83,14 @@ export default class ObjectRow extends React.Component {
 
   }
 
-  handleObjectLabelChange = e => {
+  updateLabel = e => {
 
     const newLabel = e.target.value;
     this.props.updateLabel(this.props.label, newLabel);
 
   }
 
-  handleAddEmpty = () => {
+  addEmptyRow = () => {
 
     var newContent = _.clone(this.state.content);
     newContent["newLabel"] = "newContent";
@@ -92,17 +99,28 @@ export default class ObjectRow extends React.Component {
 
   }
 
-  handleRemove = () => {
+  remove = () => {
 
     this.props.remove(this.state.label);
 
   }
 
-  renderObject(obj) {
+  renderRemoveButton() {
+    return (
+
+      <button
+          onClick={this.remove}>
+          -
+      </button>
+
+    );
+  }
+
+  renderChildren(obj) {
 
     var keys = Object.keys(obj);
     var self = this;
-    return _.map(keys, function(key, index){
+    var children = _.map(keys, function(key, index){
       if ( _.isObject(obj[key]) ) {
         return (
           <div>
@@ -131,32 +149,28 @@ export default class ObjectRow extends React.Component {
       }
 
     });
+    children.push(<button onClick={this.addEmptyRow} style={styles.addButton}> + </button>);
+    return children;
   }
 
 
   render(){
 
-    return(
+    return (
 
       <div style={styles.wrapper}>
+
+        {!this.props.root ? this.renderRemoveButton() : null}
+
         <input
           type='text'
           defaultValue={this.state.label}
-          onBlur={this.handleObjectLabelChange}
+          onBlur={this.updateLabel}
           style={styles.input}
           key={this.state.label}/>
 
-          <button
-            onClick={this.handleAddEmpty}>
-            +
-          </button>
+        {this.renderChildren(this.state.content)}
 
-          <button
-            onClick={this.handleRemove}>
-            -
-          </button>
-
-            {this.renderObject(this.state.content)}
       </div>
 
     );

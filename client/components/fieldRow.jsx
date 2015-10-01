@@ -5,7 +5,7 @@ import Radium from 'radium';
 const styles = {
 
   wrapper: {
-    marginLeft: 15,
+    marginLeft: 20,
   },
   input: {
     border: 0,
@@ -30,16 +30,15 @@ export default class FieldRow extends React.Component {
     label: '',
   }
 
-  handleContentChange = e => {
+  updateContent = e => {
     this.props.updateContent(this.props.label, e.target.value);
   }
 
-  handleLabelChange = e => {
+  updateLabel = e => {
     this.props.updateLabel(this.props.label, e.target.value);
   }
 
-  handleRemove = () => {
-    console.log(this.props);
+  remove = () => {
     this.props.remove(this.props.label);
   }
 
@@ -49,17 +48,20 @@ export default class FieldRow extends React.Component {
     const values = this.props.content.toString().replace(/[,]\s/, "").split('.');
     return(
       <div className="field_row" style={styles.wrapper}>
+        <button onClick={this.remove}>
+          -
+        </button>
         <input
           type='text'
           defaultValue={this.props.label}
-          onBlur={this.handleLabelChange}
+          onBlur={this.updateLabel}
           style={styles.input}
           key={this.props.label}/>
         <span> : </span>
         <input
           type='text'
           defaultValue={values[0]}
-          onBlur={this.handleContentChange}
+          onBlur={this.updateContent}
           style={styles.input}
           key={values[0]}/>
         {values[1] ?
@@ -69,9 +71,7 @@ export default class FieldRow extends React.Component {
             style={styles.input}
             key={values[1]}/>
           : null}
-        <button onClick={this.handleRemove}>
-          -
-        </button>
+
       </div>
     );
 

@@ -27,7 +27,8 @@ export default class JsonBuilder extends React.Component {
         <div className="rows">
          <ObjectRow
           content={this.state.blueprint}
-          updateContent={this.onContentUpdate}/>
+          updateContent={this.onContentUpdate}
+          root/>
         </div>
         <pre>
           {JSON.stringify(this.state.blueprint, null, '\t')}
