@@ -68,6 +68,16 @@ export default class ObjectRow extends React.Component {
 
   }
 
+  removeChild = (label) => {
+
+    console.log(this.state.label);
+
+    var newContent = _.clone(this.state.content);
+    delete newContent[label];
+    this.props.updateContent(this.state.label, newContent);
+
+  }
+
   handleObjectLabelChange = e => {
 
     const newLabel = e.target.value;
@@ -112,6 +122,7 @@ export default class ObjectRow extends React.Component {
             content={obj[key]}
             updateLabel={self.updateChildLabel}
             updateContent={self.updateChildContent}
+            remove={self.removeChild}
             key={index}/>
         )
       }

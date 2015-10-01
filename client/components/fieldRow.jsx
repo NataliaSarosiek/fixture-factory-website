@@ -38,6 +38,11 @@ export default class FieldRow extends React.Component {
     this.props.updateLabel(this.props.label, e.target.value);
   }
 
+  handleRemove = () => {
+    console.log(this.props);
+    this.props.remove(this.props.label);
+  }
+
 
 
   render(){
@@ -64,6 +69,9 @@ export default class FieldRow extends React.Component {
             style={styles.input}
             key={values[1]}/>
           : null}
+        <button onClick={this.handleRemove}>
+          -
+        </button>
       </div>
     );
 
