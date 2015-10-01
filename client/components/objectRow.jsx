@@ -75,6 +75,17 @@ export default class ObjectRow extends React.Component {
 
   }
 
+  handleAddEmpty = () => {
+
+    console.log(this.state.content);
+
+    var newContent = _.clone(this.state.content);
+    newContent["newLabel"] = "newContent";
+
+    this.props.updateContent(this.state.label, newContent);
+
+  }
+
   renderObject(obj) {
 
     var keys = Object.keys(obj);
@@ -82,12 +93,16 @@ export default class ObjectRow extends React.Component {
     return _.map(keys, function(key, index){
       if ( _.isObject(obj[key]) ) {
         return (
-          <ObjectRow
-            label={key}
-            content={obj[key]}
-            updateLabel={self.updateChildLabel}
-            updateContent={self.updateChildContent}
-            key={index}/>
+          <div>
+
+            <ObjectRow
+              label={key}
+              content={obj[key]}
+              updateLabel={self.updateChildLabel}
+              updateContent={self.updateChildContent}
+              key={index}/>
+
+          </div>
         )
 
       } else {
@@ -116,6 +131,12 @@ export default class ObjectRow extends React.Component {
           onBlur={this.handleObjectLabelChange}
           style={styles.input}
           key={this.state.label}/>
+
+          <button
+            onClick={this.handleAddEmpty}>
+            add empty
+          </button>
+
             {this.renderObject(this.state.content)}
       </div>
 
