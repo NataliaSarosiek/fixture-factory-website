@@ -70,8 +70,6 @@ export default class ObjectRow extends React.Component {
 
   removeChild = (label) => {
 
-    console.log(this.state.label);
-
     var newContent = _.clone(this.state.content);
     delete newContent[label];
     this.props.updateContent(this.state.label, newContent);
@@ -87,12 +85,16 @@ export default class ObjectRow extends React.Component {
 
   handleAddEmpty = () => {
 
-    console.log(this.state.content);
-
     var newContent = _.clone(this.state.content);
     newContent["newLabel"] = "newContent";
 
     this.props.updateContent(this.state.label, newContent);
+
+  }
+
+  handleRemove = () => {
+
+    this.props.remove(this.state.label);
 
   }
 
@@ -110,6 +112,7 @@ export default class ObjectRow extends React.Component {
               content={obj[key]}
               updateLabel={self.updateChildLabel}
               updateContent={self.updateChildContent}
+              remove={self.removeChild}
               key={index}/>
 
           </div>
@@ -145,7 +148,12 @@ export default class ObjectRow extends React.Component {
 
           <button
             onClick={this.handleAddEmpty}>
-            add empty
+            +
+          </button>
+
+          <button
+            onClick={this.handleRemove}>
+            -
           </button>
 
             {this.renderObject(this.state.content)}
